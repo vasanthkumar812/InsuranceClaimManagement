@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Submit Claim</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<div class="content-container">
+  <h1>Submit Claim</h1>
+  <form th:action="@{/submit}" method="post" th:object="${claimData}">
+    <label for="policyId">Policy ID:</label>
+    <input type="text" id="policyId" name="policyId" required>
+
+    <label for="claimAmount">Claim Amount:</label>
+    <input type="number" id="claimAmount" name="claimAmount" required>
+
+    <label for="claimDate">Claim Date:</label>
+    <input type="date" id="claimDate" name="claimDate" required>
+
+    <label for="claimStatus">Claim Status:</label>
+    <select id="claimStatus" name="claimStatus">
+      <option value="PENDING">Pending</option>
+      <option value="APPROVED">Approved</option>
+      <option value="REJECTED">Rejected</option>
+    </select>
+
+    <label for="adjusterId">Adjuster ID:</label>
+    <input type="number" id="adjusterId" name="adjusterId" required>
+
+    <button type="submit">Submit Claim</button>
+  </form>
+  <p th:if="${submitMessage}" style="color: green; margin-top: 20px;" th:text="${submitMessage}"></p>
+  <p th:if="${submitError}" style="color: red; margin-top: 20px;" th:text="${submitError}"></p>
+  <div th:if="${submittedClaim}" style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px;">
+    <h3 style="color: #34495e;">Submitted Claim Details:</h3>
+    <p><strong>Claim ID:</strong> <span th:text="${submittedClaim.claimId}"></span></p>
+    <p><strong>Policy ID:</strong> <span th:text="${submittedClaim.policyId}"></span></p>
+    <p><strong>Claim Amount:</strong> <span th:text="${submittedClaim.claimAmount}"></span></p>
+    <p><strong>Claim Date:</strong> <span th:text="${#dates.format(submittedClaim.claimDate, 'yyyy-MM-dd')}"></span></p>
+    <p><strong>Claim Status:</strong> <span th:text="${submittedClaim.claimStatus}"></span></p>
+    <p><strong>Adjuster ID:</strong> <span th:text="${submittedClaim.adjusterId}"></span></p>
+    <a th:href="@{/}">Back to Home</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Claims for Policy ID</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<div class="claim-list">
+  <h2>Claims for Policy ID: <span th:text="${policyId}"></span></h2>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Claim ID</th>
+      <th>Amount</th>
+      <th>Date</th>
+      <th>Status</th>
+      <th>Adjuster ID</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="claim : ${claimsList}">
+      <td th:text="${claim.claimId}"></td>
+      <td th:text="${claim.claimAmount}"></td>
+      <td th:text="${#dates.format(claim.claimDate, 'dd-MM-yyyy')}"></td>
+      <td th:text="${claim.claimStatus}"></td>
+      <td th:text="${claim.adjusterId}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <a th:href="@{/}">Back to Home</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Claim Status</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<div class="content-container">
+  <h1>Get Claim Details</h1>
+  <form th:action="@{/claimDetails}" method="get">
+    <label for="claimId">Enter Claim ID:</label>
+    <input type="number" id="claimId" name="claimId" required />
+    <button type="submit">Get Details</button>
+  </form>
+  <a th:href="@{/}">Back to Home</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Claim Status</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<div class="content-container">
+  <h1>Update Claim Status</h1>
+  <form action="/updateStatus" method="post">
+    <label for="claimId">Claim ID:</label>
+    <input type="text" id="claimId" name="claimId" required>
+
+    <label for="claimStatus">Claim Status:</label>
+    <select id="claimStatus" name="claimStatus">
+      <option value="PENDING">Pending</option>
+      <option value="APPROVED">Approved</option>
+      <option value="REJECTED">Rejected</option>
+    </select>
+
+    <button type="submit">Update Status</button>
+  </form>
+  <p th:if="${updateMessage}" style="color: green; margin-top: 20px;" th:text="${updateMessage}"></p>
+  <p th:if="${updateError}" style="color: red; margin-top: 20px;" th:text="${updateError}"></p>
+  <a th:href="@{/}">Back to Home</a>
+</div>
+</body>
+</html>
